@@ -1,0 +1,44 @@
+.bold {
+  font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.underlineStrikethrough {
+  text-decoration: underline line-through;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.code {
+  color: black;
+  padding: 2px;
+  background: #eee;
+  border: 1px solid #ccc;
+}
+
+.table {
+  margin-top: 4px;
+}
+
+.tableCell {
+  width: 70px;
+  border: 1px solid #bbb;
+  padding-left: 6px;
+}
+
+.tableCell p {
+  margin-bottom: 4px;
+}
+
+.tableCellHeader {
+  background: #f2f3f5;
+}

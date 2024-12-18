@@ -17,6 +17,7 @@ interface ForgotPasswordFormProps {
 }
 
 const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [email, setEmail] = useState<string>('');
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -42,6 +43,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(apiUrl)
     const { value } = e.target;
     setEmail(value);
     validateEmail(value);
@@ -64,7 +66,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = () => {
     }
 
     try {
-      await axios.post('http://localhost:3001/emails', { email });
+      await axios.post(apiUrl + 'emails', { email });
       toast({
         title: "Éxito",
         description: "Se ha enviado un correo electrónico para restablecer tu contraseña.",

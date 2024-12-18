@@ -12,7 +12,7 @@ export default function ImagePlugin() {
   const [url, setURL] = useState("");
   const [file, setFile] = useState<File>();
   const inputRef = useRef<HTMLInputElement>(null);
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [editor] = useLexicalComposerContext();
 
   const onAddImage = () => {
@@ -49,7 +49,7 @@ export default function ImagePlugin() {
             const formData = new FormData();
             formData.append('file', file);
             try {
-              const response = await axios.post<{ url: string }>('http://localhost:3001/upload', formData, {
+              const response = await axios.post<{ url: string }>(apiUrl+'upload', formData, {
                 headers: {
                   'Content-Type': 'multipart/form-data'
                 }

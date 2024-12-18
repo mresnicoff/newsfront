@@ -45,7 +45,7 @@ const RegisterForm: React.FC = () => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   const toast = useToast();
   const bgColor = useColorModeValue("white", "gray.800");
   const textColor = useColorModeValue("gray.600", "gray.200");
@@ -114,7 +114,7 @@ const RegisterForm: React.FC = () => {
     formData.append('file', selectedFile);}
     let avatarUrl = user.avatar;
     try {
-      const response = await axios.post<{ url: string }>('http://localhost:3001/upload', formData, {
+      const response = await axios.post<{ url: string }>(apiURL+'upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -149,7 +149,7 @@ const RegisterForm: React.FC = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/nuevousuario/', {
+      const response = await axios.post(apiUrl+'nuevousuario/', {
         email: user.email,
         avatar: avatarUrl,
         password: user.password,

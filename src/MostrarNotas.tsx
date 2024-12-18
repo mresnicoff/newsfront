@@ -33,6 +33,7 @@ const MostrarNotas: React.FC = () => {
   const [page, setPage] = useState(1);
   const [selectedNews, setSelectedNews] = useState<Article | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const apiUrl = import.meta.env.VITE_API_URL;
  // Aquí filtras tus notas según los parámetros obtenidos
 
   useEffect(() => {
@@ -42,7 +43,7 @@ console.log(searchParams)
 
   const fetchNews = async () => {
     try {
-      const response = await axios.get<{ articles: Article[] }>(`http://localhost:3001/news?page=${page}`);
+      const response = await axios.get<{ articles: Article[] }>(apiUrl+`news?page=${page}`);
       const data = response.data;
           const filteredNotes = data.articles.filter(note => {
         let matches = true;
@@ -63,7 +64,7 @@ console.log(searchParams)
 
   const handleClick = async (id: number) => {
     try {
-      const response = await axios.get<{ article: Article }>(`http://localhost:3001/news/${id}`);
+      const response = await axios.get<{ article: Article }>(apiUrl+`news/${id}`);
       setSelectedNews(response.data.article);
       setIsModalOpen(true);
     } catch (error) {

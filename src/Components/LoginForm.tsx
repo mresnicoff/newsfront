@@ -30,7 +30,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  
+  const apiUrl = import.meta.env.VITE_API_URL;
   const toast = useToast();
   const bgColor = useColorModeValue("white", "gray.800");
   const textColor = useColorModeValue("gray.600", "gray.200");
@@ -85,7 +85,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
     }
 
     try {
-           const response = await axios.post('http://localhost:3001/usuarios/', {email:user.email, password:user.password}
+           const response = await axios.post(apiUrl+'usuarios/', {email:user.email, password:user.password}
       );
 
       if (response.data.success) {

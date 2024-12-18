@@ -12,6 +12,7 @@ const MostrarNotas: React.FC = () => {
     autor:{avatar: string; nombre:string}
   }
   const [newsItems, setNewsItems] = useState<NewsCardProps[]>([]);
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
 
@@ -20,7 +21,7 @@ const MostrarNotas: React.FC = () => {
   }, []);
 
   const fetchNews = async () => {
-    const response = await axios.get(`http://localhost:3001/news?page=${page}`);
+    const response = await axios.get(apiUrl+`news?page=${page}`);
       const data = await response.data
       console.log(reponse.data)
     setNewsItems((prevNewsItems) => [...prevNewsItems, ...data.articles]);

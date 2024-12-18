@@ -24,7 +24,7 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = () => {
   const [isValidToken, setIsValidToken] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   const toast = useToast();
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,7 +40,7 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = () => {
     const verifyToken = async () => {
       if (token) {
         try {
-          const response = await axios.get(`http://localhost:3001/verify-token?token=${token}`);
+          const response = await axios.get(apiUrl+`verify-token?token=${token}`);
           if (response.data.success) {
             setIsValidToken(true);
           } else {
@@ -128,7 +128,7 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = () => {
 
     if (isValidToken && !errors.password && !errors.confirmPassword) {
       try {
-        await axios.post('http://localhost:3001/reset-password', { 
+        await axios.post(apiUrl+'reset-password', { 
           token: token, 
           password: password 
         });

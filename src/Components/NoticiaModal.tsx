@@ -1,5 +1,5 @@
 // NoticiaModal.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, Flex, Box, Text, Image } from "@chakra-ui/react";
 import { formatDate } from '../hooks/dateFormat';
 import Likes from './Likes';
@@ -26,14 +26,22 @@ interface NoticiaModalProps {
 
 const NoticiaModal: React.FC<NoticiaModalProps> = ({ isOpen, onClose, selectedNews }) => {
   const [likes, setLikes] = useState(selectedNews?.likes || 0);
+  const apiUrl = import.meta.env.VITE_API_URL;
+  useEffect(() => {
+
+    setLikes(selectedNews?.likes || 0);
+      
+      }, [selectedNews]);
+
+
 
   const updateLikes = async (id: number, liked: boolean) => {
     setLikes(prevLikes => prevLikes + (liked ? 1 : -1));
     try {
       if (liked) {
-        await axios.post(`http://localhost:3001/likes/${id}`, { action: 'increment' });
+        await axios.post(apiUrl+`likes/${id}`, { action: 'increment' });
       } else {
-        await axios.post(`http://localhost:3001/likes/${id}`, { action: 'decrement' });
+        await axios.post(apiUrl+`likes/${id}`, { action: 'decrement' });
       }
     } catch (error) {
       console.error('Error updating likes:', error);

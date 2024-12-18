@@ -22,11 +22,12 @@ export const AuthContext = createContext({
 });
 
 export default function AuthContextProvider({ children }: { children: ReactNode }) {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [loggedUser, setLoggedUser] = useState({});
   const [filtersActive, setFiltersActive] = useState<boolean>(false);
 
   const login =  useCallback(async function(email: string) {
-      const response = await axios.get(`http://localhost:3001/usuarios?email=${email}` )
+      const response = await axios.get(apiUrl+`usuarios?email=${email}` )
 console.log(response.data)
         setLoggedUser(response.data)
      ;

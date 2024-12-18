@@ -19,12 +19,13 @@ const NoticiaDetalle: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [noticia, setNoticia] = useState<Article | null>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchNoticia = async () => {
       try {
         if (id) {
-          const response = await axios.get<Noticia>(`http://localhost:3001/news/${id}`);
+          const response = await axios.get<Noticia>(apiUrl+`news/${id}`);
           setNoticia(response.data.article);
         } else {
           console.error("No se proporcionó un ID de noticia.");

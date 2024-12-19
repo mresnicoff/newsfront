@@ -114,7 +114,7 @@ const RegisterForm: React.FC = () => {
     formData.append('file', selectedFile);}
     let avatarUrl = user.avatar;
     try {
-      const response = await axios.post<{ url: string }>(apiURL+'upload', formData, {
+      const response = await axios.post<{ url: string }>(apiUrl+'upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

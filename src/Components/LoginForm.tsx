@@ -97,6 +97,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
           isClosable: true,
         });
         login(user.email)
+        console.log(user.email)
         navigate('/');
       } else {
         toast({
@@ -110,7 +111,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Hubo un problema al intentar iniciar sesión.",
+        description: error.response.data.message|| "Hubo un problema al intentar iniciar sesión.",
         status: "error",
         duration: 3000,
         isClosable: true,

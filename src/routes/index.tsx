@@ -1,16 +1,16 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import App from "../App";
 import Form from "../Form";
-import MostrarNotas from "../MostrarNotas.tsx";
-import LayoutPublic from "../layout/LayOutPublic.tsx";
-import NoticiaDetalle from "../Components/NoticiaDetalle.tsx";
-import LoginForm from "../Components/LoginForm.tsx";
-import RegisterForm from "../Components/Registrarse.tsx";
-import Logout from "../Components/Logout.tsx";
-import  ProtectedRoute from"../Components/ProtectedRoute.tsx"
-import SearchForm from "../Components/SearchForm.tsx";
-import ForgotPasswordForm from "../Components/ForgotPassword.tsx";
-import ResetPasswordForm from "../Components/ResetPassword.tsx";
+import MostrarNotas from "../MostrarNotas";
+import LayoutPublic from "../layout/LayOutPublic";
+import NoticiaDetalle from "../Components/NoticiaDetalle";
+import LoginForm from "../Components/LoginForm";
+import RegisterForm from "../Components/Registrarse";
+import Logout from "../Components/Logout";
+import  ProtectedRoute from"../Components/ProtectedRoute"
+import SearchForm from "../Components/SearchForm";
+import ForgotPasswordForm from "../Components/ForgotPassword";
+import ResetPasswordForm from "../Components/ResetPassword";
 
 const routes: RouteObject[] = [
   {

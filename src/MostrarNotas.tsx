@@ -18,6 +18,7 @@ interface Article {
   description: string;
   content: string;
   image: string;
+  likes: number;
   onClick: (id: number) => void;
   width: string | number | undefined;
 }
@@ -115,7 +116,7 @@ console.log(searchParams)
       <NoticiaModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
-        selectedNews={selectedNews}
+        selectedNews={(selectedNews as Article)}
       />
     </Flex>
   );

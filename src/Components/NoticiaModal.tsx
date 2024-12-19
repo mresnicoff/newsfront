@@ -4,18 +4,20 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, Modal
 import { formatDate } from '../hooks/dateFormat';
 import Likes from './Likes';
 import axios from 'axios';
-
 interface Article {
+  key: number;
   id: number;
   date: string;
-  autor: {
+  autor:{
     nombre: string;
-    avatar: string;
-  };
-  author: string; // Nota: 'author' parece redundante si ya tienes 'autor.nombre'
+    avatar: string;}
   title: string;
   description: string;
+  content: string;
+  image: string;
   likes: number;
+  onClick: (id: number) => void;
+  width: string | number | undefined;
 }
 
 interface NoticiaModalProps {

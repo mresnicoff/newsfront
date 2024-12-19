@@ -175,7 +175,8 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = () => {
       mx="auto" 
       my={10}
     >
-      <VStack spacing={4} align="stretch" as="form" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
+      <VStack spacing={4} align="stretch" as="form" >
         <FormControl id="password" isRequired isInvalid={!!errors.password && touched.password}>
           <FormLabel color={textColor}>Contraseña</FormLabel>
           <Input 
@@ -217,6 +218,7 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = () => {
           <a href="/loguearse" style={{ color: linkColor }}>Volver al inicio de sesión</a>
         </Text>
       </VStack>
+      </form>
     </Box>
   );
 };

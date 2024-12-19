@@ -23,7 +23,6 @@ const MostrarNotas: React.FC = () => {
   const fetchNews = async () => {
     const response = await axios.get(apiUrl+`news?page=${page}`);
       const data = await response.data
-      console.log(reponse.data)
     setNewsItems((prevNewsItems) => [...prevNewsItems, ...data.articles]);
     setPage(page + 1);
     if (data.articles.length === 0) {

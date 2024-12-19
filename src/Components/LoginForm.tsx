@@ -111,7 +111,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
     } catch (error) {
       toast({
         title: "Error",
-        description: error.response.data.message|| "Hubo un problema al intentar iniciar sesión.",
+        description: (error as any).response.data.message|| "Hubo un problema al intentar iniciar sesión.",
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -132,9 +132,9 @@ const LoginForm: React.FC<LoginFormProps> = () => {
       maxW="md" 
       mx="auto" 
       my={10}
-    >
-      <VStack spacing={4} align="stretch" as="form" onSubmit={handleSubmit}>
-        <FormControl id="email" isRequired isInvalid={showError('email')}>
+    ><form onSubmit={handleSubmit}>
+      <VStack spacing={4} align="stretch" as="form" >
+        <FormControl id="email" isRequired isInvalid={!!showError('email')}>
           <FormLabel color={textColor}>Correo Electrónico</FormLabel>
           <Input 
             type="email" 
@@ -147,7 +147,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
           {showError('email') && <Text color="red.500" fontSize="sm">{errors.email}</Text>}
         </FormControl>
 
-        <FormControl id="password" isRequired isInvalid={showError('password')}>
+        <FormControl id="password" isRequired isInvalid={!!showError('password')}>
           <FormLabel color={textColor}>Contraseña</FormLabel>
           <Input 
             type="password" 
@@ -181,6 +181,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
           </Link>
         </Text>
       </VStack>
+      </form>
     </Box>
   );
 };

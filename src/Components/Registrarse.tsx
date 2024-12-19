@@ -131,7 +131,8 @@ const RegisterForm: React.FC = () => {
     // Validate all fields before submit
     Object.keys(user).forEach((field) => {
       if (field !== 'linkautor' && field !== 'puedeescribir') {
-        validateField(field, user[field as keyof User]);
+    
+        validateField(field, user[field as keyof User] as string);
         if (errors[field]) formIsValid = false;
       }
     });
@@ -176,11 +177,11 @@ const RegisterForm: React.FC = () => {
         });
       }
     } catch (error) {
-        if (error.response) {
+        if ((error as any).response) {
           // Aquí asignamos el mensaje de error a la descripción de la notificación
           toast({
             title: "Error",
-            description: error.response.data.message || "Ocurrió un error inesperado.",
+            description: (error as any).response.data.message || "Ocurrió un error inesperado.",
             status: "error",
             duration: 1000,
             isClosable: true,
@@ -214,8 +215,9 @@ const RegisterForm: React.FC = () => {
       mx="auto" 
       my={10}
     >
-      <VStack spacing={4} align="stretch" as="form" onSubmit={handleSubmit}>
-        <FormControl id="nombre" isRequired isInvalid={showError('nombre')}>
+      <form onSubmit={handleSubmit}>
+      <VStack spacing={4} align="stretch" as="form" >
+        <FormControl id="nombre" isRequired isInvalid={!!showError('nombre')}>
           <FormLabel color={textColor}>Nombre</FormLabel>
           <Input 
             type="text" 
@@ -227,7 +229,7 @@ const RegisterForm: React.FC = () => {
           />
           {showError('nombre') && <Text color="red.500" fontSize="sm">{errors.nombre}</Text>}
         </FormControl>
-        <FormControl id="email" isRequired isInvalid={showError('email')}>
+        <FormControl id="email" isRequired isInvalid={!!showError('email')}>
           <FormLabel color={textColor}>Correo Electrónico</FormLabel>
           <Input 
             type="email" 
@@ -239,7 +241,7 @@ const RegisterForm: React.FC = () => {
           />
           {showError('email') && <Text color="red.500" fontSize="sm">{errors.email}</Text>}
         </FormControl>
-        <FormControl id="avatar" isRequired isInvalid={showError('avatar')}>
+        <FormControl id="avatar" isRequired isInvalid={!!showError('avatar')}>
   <FormLabel color={textColor}>Imagen de Avatar</FormLabel>
   <Input 
     type="file" 
@@ -251,7 +253,7 @@ const RegisterForm: React.FC = () => {
   {showError('avatar') && <Text color="red.500" fontSize="sm">{errors.avatar}</Text>}
 
 </FormControl>
-        <FormControl id="password" isRequired isInvalid={showError('password')}>
+        <FormControl id="password" isRequired isInvalid={!!showError('password')}>
           <FormLabel color={textColor}>Contraseña</FormLabel>
           <Input 
             type="password" 
@@ -263,7 +265,7 @@ const RegisterForm: React.FC = () => {
           />
           {showError('password') && <Text color="red.500" fontSize="sm">{errors.password}</Text>}
         </FormControl>
-        <FormControl id="repeatPassword" isRequired isInvalid={showError('repeatPassword')}>
+        <FormControl id="repeatPassword" isRequired isInvalid={!!showError('repeatPassword')}>
           <FormLabel color={textColor}>Repetir Contraseña</FormLabel>
           <Input 
             type="password" 
@@ -304,6 +306,7 @@ const RegisterForm: React.FC = () => {
           Registrarse
         </Button>
       </VStack>
+      </form>
     </Box>
   );
 };

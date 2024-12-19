@@ -73,7 +73,7 @@ const NoticiaModal: React.FC<NoticiaModalProps> = ({ isOpen, onClose, selectedNe
                   />
                 )}
                 <Box>
-                  <Text fontSize="md" color="red">{formatDate(selectedNews?.date)}</Text>
+                  <Text fontSize="md" color="red">{formatDate(selectedNews?.date as string)}</Text>
                   <Text color="gray.600">{selectedNews?.autor.nombre}</Text>
                 </Box>
               </Flex>

@@ -66,7 +66,7 @@ const Header: React.FC = () => {
               Log Out
             </ChakraLink>
           </Box>
-          <Box as="li">Hola {loggedUser.nombre}</Box>
+          <Box as="li">Hola {(loggedUser as any).nombre}</Box>
         </>
       );
     } else {

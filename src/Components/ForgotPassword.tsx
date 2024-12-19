@@ -78,10 +78,10 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = () => {
       const axiosError = error as AxiosError;
       toast({
         title: "Error",
-        description: axiosError.response.data.message || "Hubo un problema al intentar enviar el correo de recuperación.",
+        description: (axiosError?.response?.data as any).message || "Hubo un problema al intentar enviar el correo de recuperación.",
         status: "error",
         duration: 3000,
-        isClosable: true,
+        isClosable: true, 
       });
     } finally {
       setIsLoading(false);
@@ -97,8 +97,8 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = () => {
       maxW="md" 
       mx="auto" 
       my={10}
-    >
-      <VStack spacing={4} align="stretch" as="form" onSubmit={handleSubmit}>
+    ><form onSubmit={handleSubmit}>
+      <VStack spacing={4} align="stretch" as="form">
         <FormControl id="email" isRequired isInvalid={!!errors.email}>
           <FormLabel color={textColor}>Correo Electrónico</FormLabel>
           <Input 
@@ -124,6 +124,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = () => {
           <a href="/loguearse" style={{ color: linkColor }}>Volver al inicio de sesión</a>
         </Text>
       </VStack>
+      </form>
     </Box>
   );
 };

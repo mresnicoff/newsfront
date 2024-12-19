@@ -16,7 +16,7 @@ export default function Form() {
   const [formData, setFormData] = useState<FormData>({
     title: "",
     content: "",
-    usuarioId: loggedUser.id
+    usuarioId: (loggedUser as { id: number }).id
   });
   const { mutateAsync: saveText, isPending } = useUpdateData();
   const { data: fetchedData } = useData();
@@ -26,7 +26,7 @@ export default function Form() {
       setFormData({
         title: fetchedData.title || "",
         content: fetchedData.content || "",
-        usuarioId:loggedUser.id
+        usuarioId: (loggedUser as { id: number }).id
       });
     }
   }, [fetchedData]);
